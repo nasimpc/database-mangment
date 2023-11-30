@@ -11,21 +11,17 @@ const app = express();
 
 app.use(cors());
 
-const expenseRoutes = require('./routes/expense');
-const companyRoutes = require('./routes/company');
-const candyRoutes = require('./routes/candy');
+const userRoutes = require('./routes/user');
 
 
 app.use(bodyParser.json({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/expense', expenseRoutes);
-app.use('/company', companyRoutes);
-app.use('/candy', candyRoutes);
+// app.use('/add-comment', (req, res, next) => {
+//     console.log('hi');
+// });
+app.use('/user', userRoutes);
 
 sequelize
-    //.sync({ force: true })`
-
     .sync()
     .then(result => {
         // console.log(result);
